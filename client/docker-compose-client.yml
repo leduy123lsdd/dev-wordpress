@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  # wordpress
+  wordpress:
+    image: my-wp-app:latest
+    ports:
+      - '80:80'
+    restart: always
+    environment:
+      WORDPRESS_DB_NAME: my_wordpress
+      WORDPRESS_DB_HOST: 10.10.10.11:3306
+      WORDPRESS_DB_USER: leduy
+      WORDPRESS_DB_PASSWORD: 123456
+
+# docker tag local-image:tagname new-repo:tagname
+# docker push new-repo:tagname
