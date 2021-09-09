@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  # wordpress
+  wordpress:
+    image: wordpress:latest
+    ports:
+      - '80:80'
+    restart: always
+    volumes: ['./wp-content:/var/www/html/wp-content']
+    environment:
+      WORDPRESS_DB_HOST: 10.10.10.11:3306
+      WORDPRESS_DB_USER: leduy
+      WORDPRESS_DB_PASSWORD: 123456
+
