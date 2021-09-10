@@ -6,6 +6,7 @@ pipeline {
             steps {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
+                echo "************ Containerizing app to docker image **********"
                 '''
             }
         }
