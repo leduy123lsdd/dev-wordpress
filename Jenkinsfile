@@ -14,6 +14,7 @@ pipeline {
             steps {
                 sh '''
                 echo "************ Deploy app to Docker Hub **********"
+                
                 '''
             }
         }
