@@ -2,7 +2,7 @@ pipeline {
     agent any 
 
     environment {
-        BUILD_PATH = '/home/vagrant/deploy-web'
+        BUILD_PATH = '/var/lib/jenkins/build-wordpress-container'
     }
 
     stages {
@@ -12,10 +12,11 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
 
-                docker rmi my-wordpress-image
-                docker build -t my-wordpress-image .
+                docker rmi duy123galaxy13/wordpress
 
-                ansible-playbook $BUILD_PATH/playbook-pingtest.yml -i $BUILD_PATH/inventory.txt
+                docker build -t duy123galaxy13/wordpress .
+
+                ansible-playbook $BUILD_PATH/build-wordpress-image.yml -i $BUILD_PATH/inventory.txt
 
                 '''
             }
