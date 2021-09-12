@@ -16,7 +16,7 @@ pipeline {
 
                 docker build -t my-wordpress-image .
 
-                ansible-playbook $BUILD_PATH/playbook-pingtest.yml -i $BUILD_PATH/inventory.txt
+                // ansible-playbook $BUILD_PATH/playbook-pingtest.yml -i $BUILD_PATH/inventory.txt
 
 
 
