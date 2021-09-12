@@ -12,7 +12,7 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
 
-                docker rmi my-wordpress-image
+                // docker rmi my-wordpress-image
 
                 docker build -t my-wordpress-image .
 
