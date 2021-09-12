@@ -2,7 +2,4 @@
 // ansible-playbook $BUILD_PATH/playbook-pingtest.yml -i $BUILD_PATH/inventory.txt
 
 dsf
-sdfsdfsdf
-sdfsdfsdffsdf 
-kjjnjk kjhkjhn
 
