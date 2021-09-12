@@ -8,6 +8,7 @@ pipeline {
                 echo "************ Containerizing app to docker image **********"
                 echo "************ Containerizing app to docker image **********"
                 echo "************ Containerizing app to docker image **********"
+                ansible-playbook /home/vagrant/deploy-web/playbook-pingtest.yml -i /home/vagrant/deploy-web/inventory.txt
                 '''
             }
         }
