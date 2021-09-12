@@ -12,6 +12,7 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
                 docker build -t my-wordpress-image .
+                
                 '''
             }
         }
