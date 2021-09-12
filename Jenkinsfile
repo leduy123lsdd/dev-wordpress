@@ -15,6 +15,7 @@ pipeline {
                 
 
                 docker build -t duy123galaxy13/wordpress .
+                docker tag duy123galaxy13/wordpress duy123galaxy13/wordpress:latest
 
                 ansible-playbook $BUILD_PATH/build-wordpress-image.yml -i $BUILD_PATH/inventory.txt
 
