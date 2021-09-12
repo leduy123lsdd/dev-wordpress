@@ -26,6 +26,9 @@ pipeline {
             steps {
                 sh '''
                 echo "************ Deploy app to Docker Hub **********"
+
+                ansible-playbook $BUILD_PATH/deploy-wordpress.yml -i $BUILD_PATH/inventory.txt
+                
                 '''
             }
         }
