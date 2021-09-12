@@ -1,5 +1,10 @@
 pipeline {
     agent any 
+
+    environment {
+        BUILD_PATH = '/home/vagrant/deploy-web'
+    }
+
     stages {
 
         stage('Build') { 
@@ -8,7 +13,7 @@ pipeline {
                 echo "************ Containerizing app to docker image **********"
                 echo "************ Containerizing app to docker image **********"
                 echo "************ Containerizing app to docker image **********"
-                ansible-playbook /home/vagrant/deploy-web/playbook-pingtest.yml -i /home/vagrant/deploy-web/inventory.txt
+                ansible-playbook $BUILD_PATH/playbook-pingtest.yml -i $BUILD_PATH/inventory.txt
                 '''
             }
         }
