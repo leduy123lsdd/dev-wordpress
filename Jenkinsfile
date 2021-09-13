@@ -21,6 +21,14 @@ pipeline {
                         extraVar("docker_pass", $DOCKER_ACCOUNT_PSW)
                     }
                 }
+                ansiblePlaybook(
+                    inventory: '$BUILD_PATH/inventory.txt',
+                    playbook: '$BUILD_PATH/credential-ansible.yml',
+                    extraVars: [
+                        DOCKER_USER: '$DOCKER_ACCOUNT_USR',
+                        DOCKER_PASS: '$DOCKER_ACCOUNT_PSW'
+                    ]
+                )
             }
         }
         
