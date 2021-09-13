@@ -14,11 +14,16 @@ pipeline {
 
     stages {
 
-        stage('Down load image') { 
+        stage('Build image') { 
             steps {
                 sh '''
                 docker build -t $DOCKER_HUB_IMAGE .
                 '''
+            }
+        }
+        
+        stage('Push image to docker hub ') { 
+            steps {
                 ansiblePlaybook(
                     inventory: '$BUILD_PATH/inventory.txt',
                     playbook: '$BUILD_PATH/build-wordpress-image.yml',
@@ -31,15 +36,16 @@ pipeline {
             }
         }
         
-        stage('Login docker hub ') { 
+        stage('Deploy web server ') { 
             steps {
                 sh '''
-                docker login --username=$DOCKER_ACCOUNT_USR --password=$DOCKER_ACCOUNT_PSW
+                echo "************ Deploy app to Web server **********"
+
+                ansible-playbook $BUILD_PATH/deploy-wordpress.yml -i $BUILD_PATH/inventory.txt
+                
                 '''
             }
         }
-        
-
-
+       
     }
 }
