@@ -8,6 +8,8 @@ pipeline {
         MY_SECRET_IMAGE = credentials('secret_docker_image')
         
         DOCKER_ACCOUNT = credentials('docker_account')
+        
+        DOCKER_HUB_IMAGE = credentials('secret_docker_image')
     }
 
     stages {
@@ -19,7 +21,8 @@ pipeline {
                     playbook: '$BUILD_PATH/credential-ansible.yml',
                     extraVars: [
                         DOCKER_USER: '$DOCKER_ACCOUNT_USR',
-                        DOCKER_PASS: '$DOCKER_ACCOUNT_PSW'
+                        DOCKER_PASS: '$DOCKER_ACCOUNT_PSW',
+                        DOCKER_HUB_IMAGE: '$DOCKER_HUB_IMAGE'
                     ]
                 )
             }
