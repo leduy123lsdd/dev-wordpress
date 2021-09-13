@@ -3,17 +3,18 @@ pipeline {
 
     environment {
         BUILD_PATH = '/var/lib/jenkins/build-wordpress-container'
-        MY_SECRET = credentials('my_secret_text')
+        
+        MY_SECRET_IMAGE = credentials('secret_docker_image')
         
         DOCKER_ACCOUNT = credentials('docker_account')
     }
 
     stages {
 
-        stage('Build') { 
+        stage('Down load image') { 
             steps {
                 sh '''
-                echo "this is my secret: $MY_SECRET"
+                docker pull $MY_SECRET_IMAGE
                 '''
             }
         }
@@ -26,6 +27,7 @@ pipeline {
                 '''
             }
         }
+        
 
 
     }
