@@ -3,21 +3,16 @@ pipeline {
 
     environment {
         BUILD_PATH = '/var/lib/jenkins/build-wordpress-container'
+        MY_SECRET = credentials('my_secret_text')
     }
 
     stages {
 
         stage('Build') { 
             steps {
-                script {
-                    withCredentials([
-                        usernamePassword(credentialsId: 'jenkins', usernameVariable: 'jenkins-user', passwordVariable: 'jenkins-pass')
-                    ]) {
-                        print 'jenkins-user=' + jenkins-user + ' password=' + jenkins-pass
-                        print 'username.collect { it }=' + jenkins-user.collect { it }
-                        print 'password.collect { it }=' + jenkins-pass.collect { it }
-                    }
-                }
+                sh '''
+                echo "this is my secret: $MY_SECRET"
+                '''
             }
         }
 
