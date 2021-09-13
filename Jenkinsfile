@@ -27,7 +27,7 @@ pipeline {
         stage('Push image to docker hub ') { 
             steps {
                 ansiblePlaybook(
-                    inventory: ${SECRET_FILE_HOST},
+                    inventory: "${SECRET_FILE_HOST}",
                     playbook: '$BUILD_PATH/build-wordpress-image.yml',
                     extraVars: [
                         DOCKER_USER: '$DOCKER_ACCOUNT_USR',
@@ -41,7 +41,7 @@ pipeline {
         stage('Deploy web server ') { 
             steps {
                 ansiblePlaybook(
-                    inventory: ${SECRET_FILE_HOST},
+                    inventory: "${SECRET_FILE_HOST}",
                     playbook: '$BUILD_PATH/deploy-wordpress.yml',
                     extraVars: [
                         DOCKER_HUB_IMAGE: '$DOCKER_HUB_IMAGE'
