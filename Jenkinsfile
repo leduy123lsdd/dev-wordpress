@@ -17,7 +17,17 @@ pipeline {
                 sh '''
                 // docker pull $MY_SECRET_IMAGE
                 ansible-playbook $BUILD_PATH/credential-ansible.yml -i $BUILD_PATH/inventory.txt
+                
+                
+                
                 '''
+                ansiblePlaybook('$BUILD_PATH/credential-ansible.yml') {
+                    inventoryPath('$BUILD_PATH/inventory.txt')
+                    extraVars {
+                        extraVar("docker_user", "$DOCKER_ACCOUNT_USR")
+                        extraVar("docker_pass", "$DOCKER_ACCOUNT_PSW")
+                    }
+                }
             }
         }
         
