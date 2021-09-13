@@ -38,12 +38,13 @@ pipeline {
         
         stage('Deploy web server ') { 
             steps {
-                sh '''
-                echo "************ Deploy app to Web server **********"
-
-                ansible-playbook $BUILD_PATH/deploy-wordpress.yml -i $BUILD_PATH/inventory.txt
-                
-                '''
+                ansiblePlaybook(
+                    inventory: '$BUILD_PATH/inventory.txt',
+                    playbook: '$BUILD_PATH/deploy-wordpress.yml',
+                    extraVars: [
+                        DOCKER_HUB_IMAGE: '$DOCKER_HUB_IMAGE'
+                    ]
+                )
             }
         }
        
