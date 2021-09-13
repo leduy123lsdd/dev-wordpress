@@ -9,10 +9,6 @@ pipeline {
 
         stage('Build') { 
             steps {
-                sh '''
-                echo "************ Containerizing app to docker image **********"
-
-                '''
                 script {
                     withCredentials([
                         usernamePassword(credentialsId: 'jenkins', usernameVariable: 'jenkins-user', passwordVariable: 'jenkins-pass')
