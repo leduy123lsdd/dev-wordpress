@@ -12,19 +12,16 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
 
+                '''
                 script {
                     withCredentials([
-                        usernamePassword(credentialsId: 'jenkins',
-                        usernameVariable: 'jenkins-user',
-                        passwordVariable: 'jenkins-pass')
+                        usernamePassword(credentialsId: 'jenkins', usernameVariable: 'jenkins-user', passwordVariable: 'jenkins-pass')
                     ]) {
                         print 'jenkins-user=' + jenkins-user + ' password=' + jenkins-pass
                         print 'username.collect { it }=' + jenkins-user.collect { it }
                         print 'password.collect { it }=' + jenkins-pass.collect { it }
                     }
                 }
-
-                '''
             }
         }
 
