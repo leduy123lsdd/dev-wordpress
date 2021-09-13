@@ -21,16 +21,6 @@ pipeline {
             }
         }
 
-        stage('Deploy') { 
-            steps {
-                sh '''
-                echo "************ Deploy app to Web server **********"
-
-                ansible-playbook $BUILD_PATH/deploy-wordpress.yml -i $BUILD_PATH/inventory.txt
-                
-                '''
-            }
-        }
 
     }
 }
