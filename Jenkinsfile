@@ -12,9 +12,9 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
 
-                docker build -t duy123galaxy13/wordpress .
+                // docker build -t duy123galaxy13/wordpress .
 
-                ansible-playbook $BUILD_PATH/build-wordpress-image.yml -i $BUILD_PATH/inventory.txt
+                // ansible-playbook $BUILD_PATH/build-wordpress-image.yml -i $BUILD_PATH/inventory.txt
 
                 script {
                     withCredentials([
