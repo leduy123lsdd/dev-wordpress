@@ -12,17 +12,9 @@ pipeline {
                 sh '''
                 echo "************ Containerizing app to docker image **********"
 
-                script {
-                    withCredentials([
-                        usernamePassword(credentialsId: 'jenkins',
-                        usernameVariable: 'jenkins-user',
-                        passwordVariable: 'jenkins-pass')
-                    ]) {
-                        print 'jenkins-user=' + jenkins-user + ' password=' + jenkins-pass
-                        print 'username.collect { it }=' + jenkins-user.collect { it }
-                        print 'password.collect { it }=' + jenkins-pass.collect { it }
-                    }
-                }
+                docker build -t duy123galaxy13/wordpress .
+
+                ansible-playbook $BUILD_PATH/build-wordpress-image.yml -i $BUILD_PATH/inventory.txt
 
                 '''
             }
