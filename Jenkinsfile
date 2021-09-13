@@ -16,9 +16,12 @@ pipeline {
 
         stage('Down load image') { 
             steps {
+                sh '''
+                docker build -t $DOCKER_HUB_IMAGE .
+                '''
                 ansiblePlaybook(
                     inventory: '$BUILD_PATH/inventory.txt',
-                    playbook: '$BUILD_PATH/credential-ansible.yml',
+                    playbook: '$BUILD_PATH/build-wordpress-image.yml',
                     extraVars: [
                         DOCKER_USER: '$DOCKER_ACCOUNT_USR',
                         DOCKER_PASS: '$DOCKER_ACCOUNT_PSW',
