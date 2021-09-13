@@ -14,8 +14,8 @@ pipeline {
 
         stage('Down load image') { 
             steps {
-                ansiblePlaybook($BUILD_PATH + '/credential-ansible.yml') {
-                    inventoryPath($BUILD_PATH + '/inventory.txt')
+                ansiblePlaybook('./credential-ansible.yml') {
+                    inventoryPath('./inventory.txt')
                     extraVars {
                         extraVar("docker_user", $DOCKER_ACCOUNT_USR)
                         extraVar("docker_pass", $DOCKER_ACCOUNT_PSW)
