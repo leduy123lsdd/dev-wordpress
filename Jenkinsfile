@@ -4,6 +4,7 @@ pipeline {
     environment {
         BUILD_PATH = '/var/lib/jenkins/build-wordpress-container'
         
+        # pull image with secret name 
         MY_SECRET_IMAGE = credentials('secret_docker_image')
         
         DOCKER_ACCOUNT = credentials('docker_account')
@@ -22,8 +23,7 @@ pipeline {
         stage('Login docker hub ') { 
             steps {
                 sh '''
-                echo "this is my docker account: $DOCKER_ACCOUNT_USR"
-                echo "this is my docker password account: $DOCKER_ACCOUNT_PSW"
+                docker login --username=$DOCKER_ACCOUNT_USR --password=$DOCKER_ACCOUNT_PSW
                 '''
             }
         }
